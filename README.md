@@ -37,19 +37,20 @@ Mimo samodzielności wykonywania projektów zachęcam do wzajemnej dyskusji w gr
 
 ### Oddawanie projektów
 Oddanie projektu oznacza dla mnie dostarczenie repozytorium git do mnie przed terminem oddania projektu.
+Aby ułatwić dostępy przy sprawdzaniu, prosze o wykonanie forka tego repozytorium i tworzenie w nim projektów.
 Stan projektu będzie sprawdzany w wersji uzyskanej z następującego polecenia 
 ```
-git rev-list -n 1 --first-parent --before="data-oddania-2025 23:59" master
+git rev-list -n 1 --first-parent --before="data-oddania-2026 23:59" main
 ```
 
 ## Tabela punktacji za projekty
 
 | Numer Projektu | Opis                           | Punktacja | Termin oddania (nr laboratorium) | Odnośnik                          |
 | -------------- | ------------------------------ | --------- | -------------------------------- | --------------------------------- |
-| 1              | Badanie sposobów odczytu pliku | 20        | 20.10.2025r. (3)                 | [opis](projects/proj1/PROJECT.md) |
-| 2              | Przygotowanie formatu pliku    | 20        | 13.11.2025r. (6)                 | [opis](projects/proj2/PROJECT.md) |
-| 3              | Wczytywanie danych z pliku CSV | 30        | 10.12.2025r. (10)                | [opis](projects/proj3/PROJECT.md) |
-| 4              | Tworzenie zapytań o dane       | 30        | 25.01.2026r. (15)                | [opis](projects/proj4/PROJECT.md) |
+| 1              | Pomiary podstawowych wielkości przy odczytach plików | 20        | 19.10.2026r. (3)                 | [opis](projects/proj1/PROJECT.md) |
+| 2              | Przygotowanie formatu pliku    | 20        | 09.11.2026r. (6)                 | [opis](projects/proj2/PROJECT.md) |
+| 3              | Wczytywanie danych z pliku CSV | 30        | 07.12.2026r. (10)                | [opis](projects/proj3/PROJECT.md) |
+| 4              | Tworzenie zapytań o dane       | 30        | 18.01.2027r. (1?)                | [opis](projects/proj4/PROJECT.md) |
 
 ## Wymagania techniczne
 
