@@ -1,17 +1,27 @@
 use std::env;
 use std::fs::File;
 use std::os::unix::fs::FileExt;
+use rand::{rng, Rng, RngExt, SeedableRng};
+use rand::rngs::StdRng;
 
 mod hash;
 use hash::sum_block_hash;
 
 pub struct RandomOrderIterator {
     elements: Vec<u64>,
+    rng: Box<dyn Rng>
 }
 
 impl RandomOrderIterator {
+    pub fn with_seed(size: u64, seed: u64) -> Self {
+        Self { elements: (0 as u64..size).collect() , rng: Box::new(StdRng::seed_from_u64(seed)), }
+    }
+
     pub fn new(size: u64) -> Self {
-        Self { elements: (0 as u64..size).collect() }
+        Self {
+            elements: (0..size).collect(),
+            rng: Box::new(rng()),
+        }
     }
 }
 
@@ -22,7 +32,7 @@ impl Iterator for RandomOrderIterator {
         if self.elements.is_empty() {
             None
         } else {
-            let rand_idx = rand::random_range(0..=self.elements.len() - 1);
+            let rand_idx = self.rng.random_range(0..self.elements.len());
             Some(self.elements.swap_remove(rand_idx))
         }
     }
@@ -33,12 +43,13 @@ impl Iterator for RandomOrderIterator {
 }
 
 const BLOCK_SIZE: u64 = 512;
+const RAND_SEED: u64 = 1234;
 
 fn main() {
 
     let args: Vec<String> = env::args().collect();
     if args.len() != 2 {
-        println!("Usage: cargo run --release --features latency filepath");
+        println!("Usage: cargo run --release --bin latency filepath");
         return;
     }
 
@@ -56,7 +67,7 @@ fn main() {
     }
     let total_size = metadata.unwrap().len();
     let num_blocks = (total_size + BLOCK_SIZE - 1) / BLOCK_SIZE;
-    let random_iter = RandomOrderIterator::new(num_blocks);
+    let random_iter = RandomOrderIterator::with_seed(num_blocks, RAND_SEED);
 
     let mut buffer = vec![0u8; BLOCK_SIZE as usize];
     let mut result = vec![0u8; 16];
@@ -82,5 +93,5 @@ fn main() {
         print!("{:02x}", byte);
     }
     println!("");
-    
+
 }
