@@ -1,0 +1,16 @@
+[package]
+name = "proj1"
+version = "0.1.0"
+edition = "2024"
+
+[[bin]]
+name = "latency"
+path = "latency.rs"
+
+[[bin]]
+name = "throughput"
+path = "throughput.rs"
+
+[dependencies]
+md5 = "0.8.1"
+rand = "0.10.3"

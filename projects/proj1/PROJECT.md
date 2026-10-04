@@ -108,6 +108,24 @@ Czy dodanie większej ilości wątków po stronie czytania lub funkcji hashując
 
 ## Sprawozdanie z pomiarów
 
+## Testy po oddaniu projektu
+Na laboratorium nr 3 wykonamy test wybranych programów na trzech różnych technologiach dysków:
+* Dysk talerzowy (HDD)
+* Dysk SATA SSD
+* Dysk NVMe SSD
+
+## Materiały do przeczytania
+* Instrukcje użytkownika POSIX(3p) oraz syscalle(2)
+  * `read(2)` + `read(3p)`
+  * `open(2)`
+  * `fseek(3p)`
+  * `fstat(3p)`
+  * `mmap(2)` + `mmap(3p)`
+  * `munmap(3p)`
+  * `msync(3p)`
+  * `sys_mman.h(0p)`
+  * `clock_gettime(3p)`
+
 
 ## Strategie czytania pliku
 Typowo dzieli się pliki na bloki stałego rozmiaru (np. 8M), aby ułatwić zarządzanie odczytanymi wcześniej częściami pliku.
