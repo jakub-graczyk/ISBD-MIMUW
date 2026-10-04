@@ -80,9 +80,9 @@ Użyj do tego funkcji *mmap()*.
 Zbadaj czas wykonanaia programu dla różnych M.
 Jak abędzie róznica czasu wykonania przy pliku już znajdujacym się w pamięcy systemu? (file cache)
 
-### Przeplot obliczeń oraz operacji IO - asynchorniczne operacje IO
+### Przeplot obliczeń oraz operacji IO - pipelining
 
-Trzeci program rozwiązuje problem także czytająć sekwencyjnie, jednak tym razem K jest duże ($K=1000).
+Trzeci program rozwiązuje problem także czytająć sekwencyjnie, jednak tym razem K jest duże ($K=1000$).
 Używa on do tego synchronicznego `read()` i średnich bloków ($M \approx 1M$).
 W tym scenariuszu czas wykonania programu to suma operacji IO (potencjalna latencja i przepustowość) oraz czas wykonania operacji *compute*.
 
@@ -92,7 +92,7 @@ Połącz wątki kanałem o ograniczonej wielkości (`sync_channel`).
 
 W tej architekturze czas wykonania zmieni się z sumy czasów *read* oraz *compute* na maximum z dwóch.
 Generalnie dla małych K, dysk jest wolnieszy niz obliczanie funkcji skrótu.
-Oznacza to, że istnieje takie $K_{opt}$, gdzie w zakresie $[K, K_{opt}] program nie zwalnia.
+Oznacza to, że istnieje takie $K_{opt}$, gdzie w zakresie $[1, K_{opt}]$ program nie zwalnia.
 Natomiast każde $K > K_{opt}$ powoduje zwiększenia czasu działania.
 
 Zbadaj czas wykonania dla róznych $K$ i znajdz $K_{opt}$ dla twojego komputera i ustalonego $M$ oraz pliku.
@@ -107,6 +107,8 @@ Czy dodanie większej ilości wątków po stronie czytania lub funkcji hashując
 ### Dobór rozmiaru plików
 
 ## Sprawozdanie z pomiarów
+
+Jako wynik z tego laboratorium oczekuję dostarczenia repozytorium z rozwiązaniami trzech problemów oraz sprawozdanie z pomiarów na swoim komputerze.
 
 ## Testy po oddaniu projektu
 Na laboratorium nr 3 wykonamy test wybranych programów na trzech różnych technologiach dysków:
