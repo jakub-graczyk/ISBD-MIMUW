@@ -1,6 +1,7 @@
 use std::env;
 use std::fs::File;
 use std::os::unix::fs::FileExt;
+use std::time::Instant;
 use memmap::MmapOptions;
 
 mod hash;
@@ -35,6 +36,7 @@ fn main() {
 
     let mut buffer = vec![0u8; block_size as usize];
     let mut result = vec![0u8; 16];
+    let start = Instant::now();
     if use_read {
         for block_idx in 0..num_blocks
         {
@@ -60,6 +62,12 @@ fn main() {
             sum_block_hash(&mut result, &block_hash);
         }
     }
+    let total = start.elapsed().as_secs_f64();
+    eprintln!(
+        "prog=throughput mode={} M={} size={} total_s={:.6} mib_s={:.1}",
+        if use_read { "read" } else { "mmap" },
+        block_size, total_size, total, total_size as f64 / 1048576.0 / total
+    );
     print!("{} 0x", args[1].clone());
     for byte in &result {
         print!("{:02x}", byte);
